@@ -1,0 +1,25 @@
+{
+  "name": "web-personal-api",
+  "packageManager": "yarn@4.12.0",
+  "version": "0.0.1",
+  "description": "El api de la web personal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Aza",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.2",
+    "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^5.13.23",
+    "mongoose-paginate": "^5.0.3",
+    "nodemon": "^3.1.14"
+  }
+}
