@@ -1,0 +1,104 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.sidebar {
+    opacity: 0;
+    background-color: v.$indigo;
+    height: 0; //el aside va a tomar cierto espacio aunque le hayamos puesto 0 de altura, así que:
+    overflow: hidden; //lo oculta y ya se puede pulsar
+    transition-property: opacity;
+    transition-duration: 500ms;
+
+    &.mostrar {
+        opacity: 1;
+        padding: 2rem;
+        height: 100%;
+        position: absolute; //como no hay ningún relative, va a toamr de referencia la pantalla entera
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb( 0 0 0 / .90);
+        @include m.tablet {
+            display: none;
+        }
+    }
+
+    &.ocultar {
+        opacity: 0;
+    }
+
+    @include m.tablet {
+        opacity: 1;
+        height: 100%;
+        padding: 2rem;
+        background-color: v.$indigo;
+    }
+
+    .contenedor-sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            color: v.$blanco;
+            margin: 0;
+            text-align: center;
+        }
+        .cerrar-menu {
+            display: flex;
+            justify-content: center;
+            height: 2rem;
+            width: 2rem;
+            img {
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            @include m.tablet {
+                display: none;
+            }
+        }
+    }
+
+    .sidebar-nav {
+        margin-top: 5rem;
+
+        a {
+            color: v.$blanco;
+            display: block;
+            margin-bottom: 2rem;
+            padding: .7rem;
+            transition-property: background-color;
+            transition-duration: 300ms;
+            font-weight: bold;
+            font-size: 2.4rem;
+            text-align: center;
+
+            &:hover,
+            &.activo {
+                background-color: color.adjust(v.$indigo, $lightness: -20%);
+                border-radius: .5rem;
+            }
+
+            @include m.tablet {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                text-align: left;
+            }
+        }
+    }
+
+    .cerrar-sesion-mobile {
+        margin-top: 10rem;
+        .cerrar-sesion {
+            @include m.boton(v.$indigo, v.$blanco);
+        }
+
+        @include m.tablet {
+            display: none;
+        }
+    }
+}

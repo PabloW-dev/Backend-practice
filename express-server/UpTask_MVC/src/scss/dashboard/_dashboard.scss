@@ -1,0 +1,46 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.dashboard {
+    background-color: v.$grisClaro;
+
+    @include m.tablet {
+        display: flex;
+        height: 100vh; //esto equivale a la altura de toda la pantalla, 100 resulta toda
+    }
+
+    .principal {
+        flex: 1; //le fuerzas a que tome todo el espacio
+        overflow: scroll; //esto resulta para que haga scroll y quita los desfases, así no hay cortes blancos
+    }
+
+    .contenido {
+        padding: 2rem;
+        .nombre-pagina {
+            font-size: 2.8rem;
+            text-align: center;
+        }
+    }
+
+    .formulario {
+        input:not([type="submit"]) { //esto selecciona todos los input que no resulten de tipo submit
+            background-color: v.$blanco;
+
+        }
+        input [type="submit"] {
+            @include m.boton(v.$indigo, v.$blanco);
+            padding: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+    }
+
+    .enlace {
+        color: v.$indigo;
+        &:hover {
+            color: color.adjust(v.$indigo, $lightness: -20%);
+        }
+    }
+}

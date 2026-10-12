@@ -1,0 +1,61 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.modal {
+    position: absolute; //toma como referencia la ventana global y aplica a toda la pantalla
+    background-color: rgb( 0 0 0 / .8); //oscurecemos la pantalla
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .formulario {
+        max-width: 60rem;
+        background-color: v.$blanco;
+        padding: 2rem;
+        margin: 0 auto; //centra horizontalmente
+        transform: translateY(-30rem); //esto lo coloca arriba, haciendo que salga de la pantalla
+        transition-property: all; //que anime todas las propiedades que se pueden animar
+        transition-duration: 500ms;
+        transition-timing-function: ease-in; //ajusta el comportamiento a lo largo del tiempo, esta va de más lento a más rápido
+        opacity: 0; //esto se puede animar, display none o 0 no se puede
+        border-radius: 1rem;
+
+        legend {
+            font-size: 2rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            display: block;
+        }
+        input[type="text"] {
+            border: 1px solid v.$gris;
+            border-radius: .5rem;
+        }
+        .opciones {
+            display: flex;
+            justify-content: space-around;
+        }
+        .submit-nueva-tarea {
+            @include m.boton(v.$indigo, v.$blanco);
+        }
+
+        .cerrar-modal {
+            @include m.boton(v.$naranja, v.$blanco);
+        }
+        
+        &.animar {
+            position: relative; //centra verticalmente
+            top: 50%; //junto a esto, cuenta el 50 y a partir de ahí muestra el contenido, no usamos un display flex porque lo vamos a animar
+            transform: translateY(-50%); //lo traslada de arriba a abajo, trasladandolo 50% arriba pero tomando de referencia su propia altura
+            opacity: 1;
+        }
+
+        &.cerrar {
+            transform: translateY(-200%);
+            opacity: 0;
+        }
+
+    }
+}
